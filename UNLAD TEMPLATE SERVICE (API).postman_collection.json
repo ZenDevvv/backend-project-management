@@ -1,0 +1,1263 @@
+{
+	"info": {
+		"_postman_id": "a91a79e2-53f8-45cf-979b-b4436a67f639",
+		"name": "UNLAD TEMPLATE SERVICE (API)",
+		"description": "# 🚀 Get started here\n\nThis collection guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this collection**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these request types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT and PATCH requests.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a variable called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Tests\" tab**\n\nTests help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/b5f280a7-4b09-48ec-857f-0a7ed99d7ef8/U2NyZWVuc2hvdCAyMDIzLTAzLTI3IGF0IDkuNDcuMjggUE0ucG5n\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more scripts in \"Tests\" to verify if the API works as expected and execute flows.\n    \n\n## ℹ️ Resources\n\n[Building requests](https://learning.postman.com/docs/sending-requests/requests/)  \n[Authorizing requests](https://learning.postman.com/docs/sending-requests/authorization/)  \n[Using variables](https://learning.postman.com/docs/sending-requests/variables/)  \n[Managing environments](https://learning.postman.com/docs/sending-requests/managing-environments/)  \n[Writing scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "34045955"
+	},
+	"item": [
+		{
+			"name": "Server",
+			"item": [
+				{
+					"name": "Get Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/api"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"uzaro123\",\r\n  \"firstname\": \"Zara\",\r\n  \"lastname\": \"Santos\",\r\n  \"email\": \"cat1@gmail.com\",\r\n  \"password\": \"Test123!\",\r\n  \"phoneNumber\": \"09151234567\",\r\n  \"position\": \"HR Manager\",\r\n  \"avatarImage\": \"https://res.cloudinary.com/drulcavkz/image/upload/images_fvngyd.jpg\",\r\n  \"address\": {\r\n    \"street\": \"123 Main St\",\r\n    \"city\": \"Quezon City\",\r\n    \"state\": \"Metro Manila\",\r\n    \"zip\": \"1100\",\r\n    \"country\": \"Philippines\"\r\n  },\r\n  \"bio\": \"Passionate HR professional with over 5 years of experience in managing talent acquisition, employee relations, and organizational development.\",\r\n  \"skills\": [\"Recruitment\", \"Employee Relations\", \"Talent Management\", \"Team Building\"],\r\n  \"hobbies\": [\"Reading\", \"Traveling\", \"Photography\"],\r\n  \"company\": \"ABC Corporation\",\r\n  \"hireDate\": \"2020-06-15\"\r\n}\r\n\r\n\r\n// {\r\n//   \"username\": \"Uzaro\",\r\n//   \"firstname\": \"Uzaro\",\r\n//   \"lastname\": \"Uzaro\",\r\n//   \"email\": \"Uzaro@gmail.com\",\r\n//   \"password\": \"Uzaro\"\r\n// }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/api/user/create"
+					},
+					"response": []
+				},
+				{
+					"name": "Get ALL",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/user/get/all?select=username firstname lastname email password phoneNumber position avatarImage status type lastActive address bio skills hobbies company hireDate address\n",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"get",
+								"all"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "username firstname lastname email password phoneNumber position avatarImage status type lastActive address bio skills hobbies company hireDate address\n"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/user/get/672e532f95e8a4d1a7694ed0?select=username firstname lastname email password phoneNumber position avatarImage status type lastActive address bio skills hobbies company hireDate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"get",
+								"672e532f95e8a4d1a7694ed0"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "username firstname lastname email password phoneNumber position avatarImage status type lastActive address bio skills hobbies company hireDate"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									" var jsonData = pm.response.json();\r",
+									"     pm.environment.set(\"token\", jsonData.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"cat1@gmail.com\",\r\n    \"password\": \"Test123!\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/api/user/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/api/user/logout"
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user/search?search=meow",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"search"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "meow"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Current Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"url": "{{base_url}}/api/current/user"
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"_id\": \"6724c69c7c98274026dab09d\",\r\n    \"email\": \"meow@gmail.com\",\r\n    \"password\": \"meow!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/api/user/update"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"myles\",\r\n  \"firstname\": \"adriel\",\r\n  \"lastname\": \"avila\",\r\n  \"email\": \"myles@gmail.com\",\r\n  \"password\": \"abcd1234!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/api/user/remove/672e532f95e8a4d1a7694ed0"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Project",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n//   \"name\": \"JollibeeTech\",\r\n  \"description\": \"A comprehensive IT infrastructure overhaul for Jollibee Foods Corporation, including point-of-sale systems, back-office hardware upgrades, and a centralized inventory system.\",\r\n  \"estimatedStartDate\": \"2024-08-01T00:00:00.000Z\",\r\n  \"estimatedEndDate\": \"2025-08-01T00:00:00.000Z\",\r\n  \"actualStartDate\": \"2024-08-10T00:00:00.000Z\",\r\n  \"actualEndDate\": null,\r\n  \"totalBudget\": 1800000,\r\n  \"forecastedBudget\": 1750000,\r\n  \"opexExpenditures\": [\r\n    {\r\n      \"type\": \"Opex\",\r\n      \"personName\": \"Victor Perez\",\r\n      \"role\": \"IT Operations Lead\",\r\n      \"date\": \"2024-09-05T00:00:00.000Z\",\r\n      \"estimatedAmount\": 110000,\r\n      \"actualAmount\": 105000\r\n    },\r\n    {\r\n      \"type\": \"Opex\",\r\n      \"personName\": \"Jessica Tan\",\r\n      \"role\": \"Store Operations Manager\",\r\n      \"date\": \"2024-09-15T00:00:00.000Z\",\r\n      \"estimatedAmount\": 95000,\r\n      \"actualAmount\": 96000\r\n    }\r\n  ],\r\n  \"capexExpenditures\": [\"6733b3f9b114ef4c7f679256\"\r\n  ],\r\n  \"projectLeader\": \"672e532f95e8a4d1a7694ed0\",\r\n  \"projectStatus\": [\r\n    {\r\n      \"status\": \"Pending\",\r\n      \"date\": \"2024-08-10T00:00:00.000Z\"\r\n    },\r\n    {\r\n      \"status\": \"In Progress\",\r\n      \"date\": \"2024-09-01T00:00:00.000Z\"\r\n    }\r\n  ],\r\n  \"members\": [\r\n    {\r\n      \"userId\": \"672e532f95e8a4d1a7694ed0\",\r\n      \"role\": \"Project Manager\"\r\n    },\r\n    {\r\n      \"userId\": \"672e532f95e8a4d1a7694ed0\",\r\n      \"role\": \"Operations Specialist\"\r\n    },\r\n    {\r\n      \"userId\": \"672e532f95e8a4d1a7694ed0\",\r\n      \"role\": \"Logistics Coordinator\"\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/api/project/create"
+					},
+					"response": []
+				},
+				{
+					"name": "Get ALL",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/project/get/all?populate=projectLeader",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"project",
+								"get",
+								"all"
+							],
+							"query": [
+								{
+									"key": "populate",
+									"value": "projectLeader"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By UserId",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/project/get/byUser/672e6454e38d960ea827355b?select=name",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"project",
+								"get",
+								"byUser",
+								"672e6454e38d960ea827355b"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "name"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Dashboard",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/api/project/dashboard/MEOW"
+					},
+					"response": []
+				},
+				{
+					"name": "Get By ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/project/get/all?populate=projectLeader",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"project",
+								"get",
+								"all"
+							],
+							"query": [
+								{
+									"key": "populate",
+									"value": "projectLeader"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/project/search?search=672e6454e38d960ea827355b",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"project",
+								"search"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "672e6454e38d960ea827355b"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\": \"MEOW\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/api/project/update/672513de9d71a6f0a3046489"
+					},
+					"response": []
+				},
+				{
+					"name": "Search And Update",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"query\": { \"name\": \"Test Alpha\" },\r\n  \"update\": { \"description\": \"MEOW\" }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/api/project/searchAndUpdate"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Project",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"myles\",\r\n  \"firstname\": \"adriel\",\r\n  \"lastname\": \"avila\",\r\n  \"email\": \"myles@gmail.com\",\r\n  \"password\": \"abcd1234!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/api/project/remove/6723d57b9d2f40bf0917e746"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Supplier",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"ABC Supplies Co.\",\r\n  \"address\": \"123 Main St, Cityville, ST 12345\",\r\n    \"logo\": \"https://example.com/logo2.png\",\r\n\t\"contactPerson\": [\"672e6454e38d960ea827355b\",\"672e6454e38d960ea827355b\", \"672e6454e38d960ea827355b\"]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/api/supplier/create"
+					},
+					"response": []
+				},
+				{
+					"name": "Get ALL",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/supplier/get/all?select=name,contactPerson,address&limit=20&sort=name:asc&populate=contactPerson:firstname email",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"supplier",
+								"get",
+								"all"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "name,contactPerson,address"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								},
+								{
+									"key": "sort",
+									"value": "name:asc"
+								},
+								{
+									"key": "populate",
+									"value": "contactPerson:firstname email"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/supplier/get/672e4a91986544168474df5c?select=name,address&populate=contactPerson:email phoneNumber",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"supplier",
+								"get",
+								"672e4a91986544168474df5c"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "name,address"
+								},
+								{
+									"key": "populate",
+									"value": "contactPerson:email phoneNumber"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/supplier/search?search=ABC%20Supplies%20Co.",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"supplier",
+								"search"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "ABC%20Supplies%20Co."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"ABC Supplies\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/api/supplier/update/6720baf1d6535b7759a737c1"
+					},
+					"response": []
+				},
+				{
+					"name": "Search And Update",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"query\": { \"name\": \"New\" },\r\n  \"update\": { \"name\": \"Jane Doe\" }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/api/supplier/searchAndUpdate"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Project",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"myles\",\r\n  \"firstname\": \"adriel\",\r\n  \"lastname\": \"avila\",\r\n  \"email\": \"myles@gmail.com\",\r\n  \"password\": \"abcd1234!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/api/supplier/remove/6725122f6f11ffe018aac8f9"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Capex",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"Equipment Purchase\",\r\n    \"description\": \"Purchase of new office computers\",\r\n    \"supplierId\": \"6730c151c70f3f1b169aa97b\",\r\n\t\"projectId\": \"6733608e88e182a33d0199a1\",\r\n    \"date\": \"2024-11-01\",\r\n    \"estimatedAmount\": 50000,\r\n\t\"actualAmount\": 5000\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/api/capex/create"
+					},
+					"response": []
+				},
+				{
+					"name": "Get ALL",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/capex/get/all?select=type,description&populate=supplierId:name,projectId:name",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"capex",
+								"get",
+								"all"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "type,description"
+								},
+								{
+									"key": "populate",
+									"value": "supplierId:name,projectId:name"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/capex/get/6734ed1c8073235c1ceef315?select=type,description&populate=supplierId:name,projectId:name",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"capex",
+								"get",
+								"6734ed1c8073235c1ceef315"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "type,description"
+								},
+								{
+									"key": "populate",
+									"value": "supplierId:name,projectId:name"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/supplier/search?search=ABC%20Supplies%20Co.",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"supplier",
+								"search"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "ABC%20Supplies%20Co."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"ABC Supplies\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/api/supplier/update/6720baf1d6535b7759a737c1"
+					},
+					"response": []
+				},
+				{
+					"name": "Search And Update",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"query\": { \"name\": \"New\" },\r\n  \"update\": { \"name\": \"Jane Doe\" }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/api/supplier/searchAndUpdate"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Project",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"myles\",\r\n  \"firstname\": \"adriel\",\r\n  \"lastname\": \"avila\",\r\n  \"email\": \"myles@gmail.com\",\r\n  \"password\": \"abcd1234!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/api/capex/delete/67348e31e1653c453d7b5c6"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "localhost:5000",
+			"type": "string"
+		},
+		{
+			"key": "base_url",
+			"value": "https://pm-service.vercel.app",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjcyZTY0NTRlMzhkOTYwZWE4MjczNTViIiwiZW1haWwiOiJjYXQxQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6IlphcmEiLCJsYXN0bmFtZSI6IlNhbnRvcyJ9LCJpYXQiOjE3MzE0OTc0NTh9.60gohlvcnWt4sRhJuXfKierl6fNkqB7omHmQqZrODmQ",
+			"type": "string"
+		}
+	]
+}
